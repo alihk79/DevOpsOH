@@ -48,3 +48,14 @@ jobs:
         uses: Azure/cli@v1
         with:
           inlineScript: az bicep build --file ${{ env.WORKDIR }}/main.bicep
+
+      # Validate whether a template is valid at subscription scope
+      - name: Bicep Validate
+        uses: Azure/cli@v1
+        with:
+          inlineScript: |
+            az deployment sub validate \
+              --name ${{ github.run_id }} \
+              --template-file ${{ env.WORKDIR }}/main.bicep \
+              --location "${{ secrets.LOCATION }}" \
+              --parameters resourcesPrefix=${{ steps.resources_prefix.outputs.result }}
