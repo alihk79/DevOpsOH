@@ -2,11 +2,11 @@ targetScope = 'subscription'
 
 param uniquer string = uniqueString(newGuid())
 param location string = deployment().location
-param resourcesPrefix string = ''
-param apiPoiBaseImageTag string = ''
-param apiTripsBaseImageTag string = ''
-param apiUserJavaBaseImageTag string = ''
-param apiUserprofileBaseImageTag string = ''
+param resourcesPrefix string = 'devopsoh01'
+param apiPoiBaseImageTag string = 'apipoitag'
+param apiTripsBaseImageTag string = 'apitripstag'
+param apiUserJavaBaseImageTag string = 'apiujtag'
+param apiUserprofileBaseImageTag string = 'apiuptag'
 param sqlServerAdminPassword string = ''
 
 var varfile = json(loadTextContent('./variables.json'))
