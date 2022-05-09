@@ -56,3 +56,31 @@ jobs:
               --template-file ${{ env.WORKDIR }}/main.bicep \
               --location "${{ secrets.LOCATION }}" \
               --parameters resourcesPrefix=${{ steps.resources_prefix.outputs.result }}
+              
+  deploy:
+    name: "Deploy"
+    needs: preview
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Login to Azure with Service Principal
+      - name: "Azure Login"
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Deploy
+      - name: "Deployment"
+        uses: Azure/cli@v1
+        with:
+          inlineScript: |
+            az deployment sub create \
+              --name ${{ github.run_id }} \
+              --template-file ${{ env.WORKDIR }}/main.bicep \
+              --location "${{ secrets.LOCATION }}" \
+              --parameters resourcesPrefix=${{ needs.preview.outputs.RESOURCES_PREFIX }}
