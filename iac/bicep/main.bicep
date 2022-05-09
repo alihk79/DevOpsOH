@@ -17,7 +17,7 @@ var apiPoiBaseImageTagCalculated = empty(apiPoiBaseImageTag) ? varfile.baseImage
 var apiTripsBaseImageTagCalculated = empty(apiTripsBaseImageTag) ? varfile.baseImageTag : apiTripsBaseImageTag
 var apiUserJavaBaseImageTagCalculated = empty(apiUserJavaBaseImageTag) ? varfile.baseImageTag : apiUserJavaBaseImageTag
 var apiUserprofileBaseImageTagCalculated = empty(apiUserprofileBaseImageTag) ? varfile.baseImageTag : apiUserprofileBaseImageTag
-
+// adding comment to test devops process
 var sqlServerAdminPasswordCalculated = empty(sqlServerAdminPassword) ? varfile.sqlServerAdminPassword : sqlServerAdminPassword
 
 module openhackResourceGroup './resourceGroup.bicep' = {
