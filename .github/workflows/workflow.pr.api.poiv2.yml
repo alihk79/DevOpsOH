@@ -133,6 +133,7 @@ jobs:
               issue_number: context.issue.number,
               body: body
             })
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       # break the workflow
       - name: "Unit Tests Status"
