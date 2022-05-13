@@ -11,6 +11,7 @@ on:
 # Set envs
 env:
   DOTNET_VERSION: "3.1.x"
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 # Set defaults for GitHub Actions runner
 defaults:
