@@ -4,11 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - ch5-v1
-      #- main
-    #paths:
-      #- "apis/poi/**"
-  
+      - main
   
 jobs:
 
@@ -19,11 +15,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.4.2
       
-    - name: Something that might fail
-      run: exit 1
-    
     - name: Create Github Issue - dacbd/create-issue-action@v1.2.0
-      if: ${{ failure() }}
       uses: dacbd/create-issue-action@v1.2.0
       with:
         token: ${{ github.token }}
@@ -38,7 +30,6 @@ jobs:
     #    gh issue create --title "Create Github Issue - CLI gh issue create - " --body "Create Github Issue - CLI gh issue create"
     
     - name: GitHub Script
-      if: ${{ failure() }}
       uses: actions/github-script@v6.1.0
       with:
         script: |
